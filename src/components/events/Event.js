@@ -9,13 +9,19 @@ import "firebase/firestore";
 
 export default class Event extends Component {
 	state = {
-		name: '',
-		data: { temp: 23.4, humidity: 40, light: 425 },
-		graphWid: 400
+		options: []
 	};
 
 	async componentDidMount() {
-		this.setState({ name: this.props.name });
+		firebase.firestore()
+		.collection("Elections")
+		.get()
+		.then((querySnapshot)=>{
+			querySnapshot.forEach((doc) => {
+				console.log(doc.data().Options)
+				this.setState({ options: doc.data().Options });
+			});;
+		});
 	}
 
 	toTitleCase = s => {
@@ -48,7 +54,16 @@ export default class Event extends Component {
 					{/* <div className="card-header" /> */}
 					<div className="card-body p-5">
 						<h1 className="mb-4">Your Digital Ballot.</h1>
-						{boxes}
+						{this.state.options.map((option) => (
+							<div className="row mb-3">
+								<div class="form-check ml-4">
+									<input class="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
+									<label class="form-check-label" for="defaultCheck1">
+										{option}
+									</label>
+								</div>
+							</div>
+						))}
 						<button type="submit" class="btn btn-primary mt-4">Submit</button>
 					</div>
 					{/* <div className="card-footer text-muted">
