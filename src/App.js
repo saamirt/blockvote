@@ -127,13 +127,14 @@ class App extends Component {
                 style={{
                   backgroundColor: `#f8f8f8`,
                   paddingLeft: "6rem",
+                  // paddingLeft: "2rem",
                   paddingRight: "2rem"
                 }}
               >
                 <div
                   className="container"
                   style={{
-                    paddingTop: "4rem",
+                    paddingTop: "2rem",
                     paddingBottom: "4rem"
                   }}
                 >

@@ -50,15 +50,21 @@ export default class EventsList extends Component {
 		return (
 			<React.Fragment>
 				{this.state.eventList ? (
-					<div className="row">
-						{this.state.eventList.map(event => (
-							<EventCard
-								key={event.name}
-								name={event.name}
-								url={event.url}
-							/>
-						))}
-					</div>
+					<React.Fragment>
+						<div className="mb-5" style={{borderBottom: "3px solid #dedede"}}>
+							<h1 style={{color: "#545454"}}>Your Events</h1>
+						</div>
+						<div className="row mx-auto" style={{width: "80%"}}>
+							{this.state.eventList.map(event => (
+								<EventCard
+									key={event.name}
+									name={event.name}
+									url={event.url}
+								/>
+							))}
+						</div>
+						
+				</React.Fragment>
 				) : (
 					<h1>Loading Events...</h1>
 				)}
