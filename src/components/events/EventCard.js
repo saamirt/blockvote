@@ -52,26 +52,23 @@ export default class EventCard extends Component {
 	render() {
 		return (
 			<div className="col-xl-4 col-lg-6 mb-4">
-				<StyledLink to={`event/${this.state.eventIndex}`}>
-					<div className="card mb-3 event-card p-2">
-						<div className="row no-gutters align-items-center justify-content-between">
-							<div>
-								<div className="card-body">
-									<h3 className="card-title mb-1 font-weight-bold">
-										Event {this.state.eventIndex}
-									</h3>
-									<h5 className="card-text mb-1 text-muted font-weight-light">
-										Last updated 3 mins ago
-									</h5>
-									<h5 className="card-text text-connected font-weight-medium">
-										Connected
-									</h5>
-								</div>
-							</div>
-							<div className="text-center p-4">
-								<div className="card-body bg-yellow rounded-circle square float-right">
-									<EventImage />
-								</div>
+				<StyledLink to={`/event/${this.state.eventIndex}`}>	
+					<div className="card mb-3 event-card mx-1">
+						<div>
+							<img src="https://www.ctvnews.ca/polopoly_fs/1.2065875.1413999058!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg" class="card-img-top" alt="..."/>
+							<div className="card-body">
+								<h3 className="card-title mb-1 font-weight-bold">
+									Federal Election (2019)
+								</h3>
+								{/* <h5 className="card-text mb-1 text-muted font-weight-light">
+									Sept. 14, 2019 - Sept. 18, 2019
+								</h5> */}
+								<h5 className="card-text text-connected font-weight-medium">
+									Open For Voting
+								</h5>
+								<p class="card-text">
+									<small class="text-muted">Last updated 3 mins ago</small>
+								</p>
 							</div>
 						</div>
 					</div>

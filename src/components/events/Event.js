@@ -25,101 +25,31 @@ export default class Event extends Component {
 	};
 
 	render() {
+		let boxes = [];
+		for (let i = 0; i < 4; i++){
+			boxes.push(
+			<div className="row mb-3">
+				<div class="form-check ml-4">
+					<input class="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
+					<label class="form-check-label" for="defaultCheck1">
+						Default checkbox
+					</label>
+				</div>
+			</div>
+			)
+		}	
 		return (
 			<div>
-				<div className="card mb-4">
-					<div className="card-header" />
-					<div className="card-body">
-						<h1 className="mb-4">Controls</h1>
-						<div className="row">
-							<div className="col-sm-4">
-								<div className="card mb-3">
-									<div className="card-body text-center">
-										<h5>
-											{this.toTitleCase('Temperature')}
-										</h5>
-										<EventImage />
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-4">
-								<div className="card mb-3">
-									<div className="card-body text-center">
-										<h5>
-											{this.toTitleCase('Temperature')}
-										</h5>
-										<EventImage />
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-4">
-								<div className="card mb-3">
-									<div className="card-body text-center">
-										<h5>
-											{this.toTitleCase('Temperature')}
-										</h5>
-										<EventImage />
-									</div>
-								</div>
-							</div>
-						</div>
+				<div className="card mt-5 mx-auto" style={{width: "70%"}}>
+					{/* <div className="card-header" /> */}
+					<div className="card-body p-5">
+						<h1 className="mb-4">Your Digital Ballot.</h1>
+						{boxes}
+						<button type="submit" class="btn btn-primary mt-4">Submit</button>
 					</div>
-					<div className="card-footer text-muted">
+					{/* <div className="card-footer text-muted">
 						Data from IoT Event Device
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-xl-6 col-lg-12 graph1">
-						<div className="card mb-4">
-							<div className="card-body">
-								<h5>{this.toTitleCase('Temperature')}</h5>
-								<div className="my-3">
-									<ParentSize>
-										{parent => (
-											<Graph
-												width={parent.width}
-												hue={0}
-											/>
-										)}
-									</ParentSize>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div className="col-xl-6 col-lg-12 graph2">
-						<div className="card mb-4">
-							<div className="card-body">
-								<h5>{this.toTitleCase('Temperature')}</h5>
-								<div className="my-3">
-									<ParentSize>
-										{parent => (
-											<Graph
-												width={parent.width}
-												hue={50}
-											/>
-										)}
-									</ParentSize>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div className="col-xl-6 col-lg-12 graph3">
-						<div className="card mb-4">
-							<div className="card-body">
-								<h5>{this.toTitleCase('Temperature')}</h5>
-								<div className="my-3">
-									<ParentSize>
-										{parent => (
-											<Graph
-												width={parent.width}
-												hue={100}
-											/>
-										)}
-									</ParentSize>
-								</div>
-							</div>
-						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		);

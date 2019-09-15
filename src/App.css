@@ -34,10 +34,6 @@ font-weight-medium {
 	font-weight: 500;
 }
 
-h5 {
-	font-size: 0.95rem;
-}
-
 .bg-yellow {
 	background-color: #fff8a7;
 }
@@ -143,6 +139,7 @@ h5 {
 
 .sidenav---sidenav---_2tBP {
 	background-color: #2c2c2c;
+	position: fixed;
 }
 .sidenav---sidenav-nav---3tvij
 	> .sidenav---sidenav-navitem---uwIJ-
@@ -153,6 +150,10 @@ h5 {
 	> .sidenav---navitem---9uL5T
 	.sidenav---navtext---1AE_f {
 	color: #d4d4d4;
+}
+
+.eventslist-card{
+	height: 350px;
 }
 
 /*
@@ -180,3 +181,16 @@ h5 {
 .graph1 .graph-inner-dot {
 	fill: #ffffff;
 }*/
+
+h3 {
+	font-size: 1.1rem;
+}
+
+h5 {
+	font-size: 0.9rem;
+}
+
+p {
+	font-size: 0.8rem;
+}
+
