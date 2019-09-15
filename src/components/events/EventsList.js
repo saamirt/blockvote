@@ -2,51 +2,39 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import EventCard from './EventCard';
 
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+
+import * as firebaseui from 'firebaseui';
+// import { ConfigurationServicePlaceholders } from 'aws-sdk/lib/config_service_placeholders';
+
 export default class EventsList extends Component {
 	state = {
 		name: '',
 		url: 'https://pokeapi.co/api/v2/pokemon/',
-		eventList: null,
-		event: null
+		eventList: []
 	};
 
 	async componentDidMount() {
-		const res = await axios.get(this.state.url);
-
-		this.setState({
-			eventList: res.data['results'].slice(0, 6).map(g => {
-				let c1 = ['ffffff', 'ff7373', '6779ff'][
-					Math.floor(Math.random() * 3)
-				];
-				let c2 = ['acff90', 'ff7373', '6779ff'][
-					Math.floor(Math.random() * 3)
-				];
-				while (c2 === c1) {
-					c2 = ['acff90', 'ff7373', '6779ff'][
-						Math.floor(Math.random() * 3)
-					];
+		firebase.firestore()
+		.collection("Elections")
+		.get()
+		.then((querySnapshot)=>{
+			querySnapshot.forEach((doc) => {
+				let event = {
+					"eventId": doc.id,
+					"title": doc.data().title,
+					"imageUrl": doc.data()['image-url']
 				}
-				return Object.assign(g, {
-					eventIcon: {
-						primColor: c1,
-						secColor: c2,
-						beardColor: [
-							'FF954D',
-							'E2E2E2',
-							'934118',
-							'C46937',
-							'FFFF6C'
-						][Math.floor(Math.random() * 5)],
-						skinColor: 'ffe2cc'
-					}
-				});
-			})
+				console.log(event);
+				this.setState({ eventList: [...this.state.eventList,event]});
+			});;
 		});
-
-		this.setState({ event: res.data['results'] });
 	}
 
 	render() {
+		// get the whole collection
 		return (
 			<React.Fragment>
 				{this.state.eventList ? (
@@ -57,9 +45,10 @@ export default class EventsList extends Component {
 						<div className="row mx-auto" style={{width: "80%"}}>
 							{this.state.eventList.map(event => (
 								<EventCard
-									key={event.name}
-									name={event.name}
-									url={event.url}
+									eventId={event.eventId}
+									key={event.eventId}
+									title={event.title}
+									imageUrl={event.imageUrl}
 								/>
 							))}
 						</div>

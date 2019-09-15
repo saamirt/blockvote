@@ -3,6 +3,10 @@ import Graph from './SensorPlot';
 import EventImage from './EventImage';
 import { ParentSize } from '@vx/responsive';
 
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+
 export default class Event extends Component {
 	state = {
 		name: '',
