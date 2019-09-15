@@ -15,35 +15,35 @@ const client = new algosdk.Algod(token, server, port);
 });
 
 const mainAccountMnemonic =
-  "kitchen evolve rocket post secret gallery found address acoustic figure decrease display luxury nothing gain endorse disease wolf stage bless private abstract inherit above twelve";
+  {"name": "main", "mnemonic": "kitchen evolve rocket post secret gallery found address acoustic figure decrease display luxury nothing gain endorse disease wolf stage bless private abstract inherit above twelve"};
 
 const liberals =
-  "group clinic resource admit elephant flock comfort favorite pig always marriage merit junior elephant vendor myself limb village throw proof travel then shuffle about gravity";
+  {"name": "liberal", "mnemonic": "group clinic resource admit elephant flock comfort favorite pig always marriage merit junior elephant vendor myself limb village throw proof travel then shuffle about gravity"};
 
 const conservatives =
-  "napkin echo ugly aware notice organ ranch eternal blade crush shy admit miss soldier devote rabbit olympic board melt blue tiger skirt extra absent purpose";
+  {"name": "conservative", "mnemonic": "napkin echo ugly aware notice organ ranch eternal blade crush shy admit miss soldier devote rabbit olympic board melt blue tiger skirt extra absent purpose"};
 
 const NDP =
-  "hamster earn dust siren ostrich soap coil electric foster magnet essence detect casino van science turtle answer key idle jacket typical clerk vapor abstract defy";
+  {"name": "new democratic party", "mnemonic": "hamster earn dust siren ostrich soap coil electric foster magnet essence detect casino van science turtle answer key idle jacket typical clerk vapor abstract defy"};
 
 const bloc =
-  "fuel obvious inflict laptop laptop vacuum gravity wolf tourist category sea admit sand phrase object swallow caught identify brown alone inhale hub airport absent lounge";
+  {"name": "bloc québécois", "mnemonic": "fuel obvious inflict laptop laptop vacuum gravity wolf tourist category sea admit sand phrase object swallow caught identify brown alone inhale hub airport absent lounge"};
 
 const greenParty =
-  "ring enrich suggest abstract glove mixed canvas exhibit scale cancel stock afraid tomorrow resemble hundred oxygen race solid wheel action people concert armor absorb true";
+  {"name": "green party", "mnemonic": "ring enrich suggest abstract glove mixed canvas exhibit scale cancel stock afraid tomorrow resemble hundred oxygen race solid wheel action people concert armor absorb true"};
 
 const mnemonic7 =
-  "traffic sell better grace code staff decide pulse flip entry artwork survey urge noise dentist picture need essay satisfy canal else flight action absorb success";
+  {"name": "7", "mnemonic": "traffic sell better grace code staff decide pulse flip entry artwork survey urge noise dentist picture need essay satisfy canal else flight action absorb success"};
 
-const mainaccount = algosdk.mnemonicToSecretKey(mainAccountMnemonic);
+const mainaccount = algosdk.mnemonicToSecretKey(mainAccountMnemonic['mnemonic']);
 
-const dummy = algosdk.mnemonicToSecretKey(mnemonic7);
+const dummy = algosdk.mnemonicToSecretKey(mnemonic7['mnemonic']);
 
-const candidate1 = algosdk.mnemonicToSecretKey(liberals);
-const candidate2 = algosdk.mnemonicToSecretKey(conservatives);
-const candidate3 = algosdk.mnemonicToSecretKey(NDP);
-const candidate4 = algosdk.mnemonicToSecretKey(bloc);
-const candidate5 = algosdk.mnemonicToSecretKey(greenParty);
+const candidate1 = algosdk.mnemonicToSecretKey(liberals['mnemonic']);
+const candidate2 = algosdk.mnemonicToSecretKey(conservatives['mnemonic']);
+const candidate3 = algosdk.mnemonicToSecretKey(NDP['mnemonic']);
+const candidate4 = algosdk.mnemonicToSecretKey(bloc['mnemonic']);
+const candidate5 = algosdk.mnemonicToSecretKey(greenParty['mnemonic']);
 
 const voter = algosdk.generateAccount();
 console.log("voter: ", voter.addr);
