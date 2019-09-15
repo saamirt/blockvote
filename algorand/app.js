@@ -92,27 +92,31 @@ console.log("addresses: ", mainaccount.addr, "----- ");
 });
 
 const callback = async () => {
-  let params = await client.getTransactionParams();
-  let endRound = params.lastRound + parseInt(1000);
+  try {
+    let params = await client.getTransactionParams();
+    let endRound = params.lastRound + parseInt(1000);
 
-  let vote = {
-    from: voter.addr,
-    to: dummy.addr,
-    fee: 10,
-    amount: 100000, //vote
-    firstRound: params.lastRound,
-    lastRound: endRound,
-    genesisID: params.genesisID,
-    genesisHash: params.genesishashb64,
-    note: algosdk.encodeObj({})
-  };
+    let vote = {
+      from: voter.addr,
+      to: dummy.addr,
+      fee: 10,
+      amount: 100000, //vote
+      firstRound: params.lastRound,
+      lastRound: endRound,
+      genesisID: params.genesisID,
+      genesisHash: params.genesishashb64,
+      note: algosdk.encodeObj({})
+    };
 
-  //sign the vote
-  let signedVote = algosdk.signTransaction(vote, voter.sk);
+    //sign the vote
+    let signedVote = algosdk.signTransaction(vote, voter.sk);
 
-  //send the vote onto the algorand network
-  let vt = await client.sendRawTransaction(signedVote.blob);
-  console.log("vote: ", vt);
+    //send the vote onto the algorand network
+    let vt = await client.sendRawTransaction(signedVote.blob);
+    console.log("vote: ", vt);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
-setTimeout(callback, 5500);
+setTimeout(callback, 10000);
