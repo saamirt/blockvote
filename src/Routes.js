@@ -6,6 +6,7 @@ import AppliedRoute from "./components/AppliedRoute";
 import SignUp from "./components/login/SignUp";
 import Event from "./components/events/Event";
 import NotFound from "./components/NotFound";
+import LandingPage from "./components/layout/LandingPage";
 
 export default ({ childProps }) => (
   <Switch>
@@ -18,6 +19,7 @@ export default ({ childProps }) => (
       component={Event}
       props={childProps}
     />
+    <AppliedRoute path="/" exact component={LandingPage} props={childProps} />
     <Route
       exact
       path="/"
