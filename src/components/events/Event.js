@@ -35,19 +35,6 @@ export default class Event extends Component {
 	};
 
 	render() {
-		let boxes = [];
-		for (let i = 0; i < 4; i++){
-			boxes.push(
-			<div className="row mb-3">
-				<div class="form-check ml-4">
-					<input class="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
-					<label class="form-check-label" for="defaultCheck1">
-						Default checkbox
-					</label>
-				</div>
-			</div>
-			)
-		}	
 		return (
 			<div>
 				<div className="card mt-5 mx-auto" style={{width: "70%"}}>
@@ -56,15 +43,15 @@ export default class Event extends Component {
 						<h1 className="mb-4">Your Digital Ballot.</h1>
 						{this.state.options.map((option) => (
 							<div className="row mb-3">
-								<div class="form-check ml-4">
-									<input class="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
-									<label class="form-check-label" for="defaultCheck1">
+								<div className="form-check ml-4">
+									<input className="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
+									<label className="form-check-label" for="defaultCheck1">
 										{option}
 									</label>
 								</div>
 							</div>
 						))}
-						<button type="submit" class="btn btn-primary mt-4">Submit</button>
+						<button type="submit" className="btn btn-primary mt-4">Submit</button>
 					</div>
 					{/* <div className="card-footer text-muted">
 						Data from IoT Event Device
