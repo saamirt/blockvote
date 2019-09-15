@@ -6,6 +6,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Amplify from "aws-amplify";
 import config from "./config";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import { FirebaseAuthProvider} from "@react-firebase/auth";
 
 Amplify.configure({
     Auth: {
@@ -28,7 +31,9 @@ Amplify.configure({
 
   ReactDOM.render(
     <Router>
+    <FirebaseAuthProvider {...config} firebase={firebase}>
       <App />
+      </FirebaseAuthProvider>
     </Router>,
     document.getElementById("root")
   );
