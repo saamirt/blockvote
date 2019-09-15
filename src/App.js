@@ -6,6 +6,7 @@ import SideNav, { NavItem, NavIcon, NavText } from "@trendmicro/react-sidenav";
 import ClickOutside from "react-click-outside";
 // Be sure to include styles at some point, probably during your bootstraping
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
+import * as firebase from "firebase/app";
 
 import "./App.css";
 // import backgroundImg from "./assets/bg-white-01.jpg";
@@ -37,7 +38,7 @@ class App extends Component {
     this.setState({ isAuthenticated: authenticated });
   };
   handleLogout = async event => {
-    await Auth.signOut();
+    await firebase.auth().signOut();
   
     this.userHasAuthenticated(false);
 
@@ -77,7 +78,7 @@ class App extends Component {
                   }}
                 >
                   <SideNav.Toggle />
-                  {this.state.isAuthenticated ? (
+                  {firebase.auth().currentUser ? (
                     <SideNav.Nav defaultSelected="home">
                       <NavItem eventKey="home">
                         <NavIcon>

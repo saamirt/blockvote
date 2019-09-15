@@ -1,12 +1,12 @@
+// import { FormGroup, FormControl, FormLabel } from "react-bootstrap";
+// import LoaderButton from "../../components/buttons/LoaderButton";
 import React, { Component } from "react";
-import { FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import LoaderButton from "../../components/buttons/LoaderButton";
 import "./Login.css";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import config from "./../../config";
+
 // Configure FirebaseUI.
 const uiConfig = {
   // Popup signin flow rather than redirect flow.
