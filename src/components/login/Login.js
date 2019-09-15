@@ -2,7 +2,24 @@ import React, { Component } from "react";
 import { FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import LoaderButton from "../../components/buttons/LoaderButton";
 import "./Login.css";
-import { Auth } from "aws-amplify";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import config from "./../../config";
+// Configure FirebaseUI.
+const uiConfig = {
+  // Popup signin flow rather than redirect flow.
+  signInFlow: "popup",
+  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+  signInSuccessUrl: "/#/home",
+  // We will display Google and Facebook as auth providers.
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+  ]
+};
 
 export default class Login extends Component {
   constructor(props) {
@@ -28,48 +45,25 @@ export default class Login extends Component {
   handleSubmit = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    try {
-      await Auth.signIn(this.state.email, this.state.password);
-      console.log(this.props);
-      this.props.userHasAuthenticated(true);
-      alert("Logged in");
-      this.props.history.push("/home");
-    } catch (e) {
-      alert(e.message);
-    }
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.email, this.password)
+      .then(() => {
+        this.props.history.push("/home");
+        console.log("Logged in Firebase");
+      })
+      .catch(error => {
+        alert(error.message);
+      });
   };
 
   render() {
     return (
       <div className="Login">
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" size="large">
-            <FormLabel>Email</FormLabel>
-            <FormControl
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <FormGroup controlId="password" size="large">
-            <FormLabel>Password</FormLabel>
-            <FormControl
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </FormGroup>
-          <LoaderButton
-            block
-            bsSize="large"
-            disabled={!this.validateForm()}
-            type="submit"
-            isLoading={this.state.isLoading}
-            text="Login"
-            loadingText="Logging in…"
-          />
-        </form>
+        <StyledFirebaseAuth
+          uiConfig={uiConfig}
+          firebaseAuth={firebase.auth()}
+        />
       </div>
     );
   }
